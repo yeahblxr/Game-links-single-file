@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>New Tab</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+<div id="content"></div>
+
+<script>
+fetch("https://cdn.jsdelivr.net/gh/yeahblxr/Game-links-single-file@main/Links.html" + Date.now())
+    .then(response => {
+        if (!response.ok) throw new Error("Failed to load file");
+        return response.text();
+    })
+    .then(data => {
+        document.getElementById("content").innerHTML = data;
+    })
+    .catch(error => {
+        document.getElementById("content").textContent = "Error loading content.";
+        console.error(error);
+    });
+</script>
+
+</body>
+</html>
