@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>New Tab</title>
+    <title>Game Stash</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
@@ -10,16 +10,20 @@
 <div id="content"></div>
 
 <script>
-fetch("https://cdn.jsdelivr.net/gh/yeahblxr/Game-links-single-file@main/Links.html" + Date.now())
+fetch("https://cdn.jsdelivr.net/gh/yeahblxr/Game-links-single-file@main/Links.html?t=" + Date.now())
     .then(response => {
         if (!response.ok) throw new Error("Failed to load file");
         return response.text();
     })
     .then(data => {
-        document.getElementById("content").innerHTML = data;
+        // Remove the html, head, body tags to inject just the content
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(data, 'text/html');
+        document.head.innerHTML += doc.head.innerHTML;
+        document.getElementById("content").innerHTML = doc.body.innerHTML;
     })
     .catch(error => {
-        document.getElementById("content").textContent = "Error loading content.";
+        document.getElementById("content").textContent = "Error loading content: " + error.message;
         console.error(error);
     });
 </script>
