@@ -16,11 +16,34 @@ fetch("https://cdn.jsdelivr.net/gh/yeahblxr/Game-links-single-file@main/Links.ht
         return response.text();
     })
     .then(data => {
-        // Remove the html, head, body tags to inject just the content
         const parser = new DOMParser();
         const doc = parser.parseFromString(data, 'text/html');
-        document.head.innerHTML += doc.head.innerHTML;
-        document.getElementById("content").innerHTML = doc.body.innerHTML;
+        
+        // Extract styles from head
+        const styles = doc.querySelectorAll('style');
+        styles.forEach(style => document.head.appendChild(style.cloneNode(true)));
+        
+        // Extract container content from body
+        const container = doc.querySelector('.container');
+        if (container) {
+            document.getElementById("content").innerHTML = container.innerHTML;
+            
+            // Re-run the openTab function to make tabs work
+            window.openTab = function(tabName) {
+                var tabcontent = document.getElementsByClassName("tab-content");
+                for (var i = 0; i < tabcontent.length; i++) {
+                    tabcontent[i].style.display = "none";
+                    tabcontent[i].classList.remove("active");
+                }
+                var tabbuttons = document.getElementsByClassName("tab-button");
+                for (var i = 0; i < tabbuttons.length; i++) {
+                    tabbuttons[i].classList.remove("active");
+                }
+                document.getElementById(tabName).style.display = "block";
+                document.getElementById(tabName).classList.add("active");
+                event.currentTarget.classList.add("active");
+            };
+        }
     })
     .catch(error => {
         document.getElementById("content").textContent = "Error loading content: " + error.message;
