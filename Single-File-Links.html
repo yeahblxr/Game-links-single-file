@@ -10,7 +10,7 @@
 <div id="content"></div>
 
 <script>
-fetch("https://cdn.jsdelivr.net/gh/yeahblxr/Game-links-single-file@main/Links.html?t=" + Date.now())
+fetch("https://cdn.jsdelivr.net/gh/yeahblxr/Game-links-single-file@latest/Links.html?t=" + Date.now())
     .then(response => {
         if (!response.ok) throw new Error("Failed to load file");
         return response.text();
