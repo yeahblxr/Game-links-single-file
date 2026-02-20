@@ -258,8 +258,10 @@
         createParticles();
 
 document.addEventListener('keydown', function(event) {
-    if (event.ctrlKey && event.location === 2) {
-        window.location.href = 'https://classroom.google.com/h';
+    if (event.ctrlKey) { 
+        // Note: Some Chromebooks don't distinguish Right/Left Ctrl perfectly
+        // This will trigger if Ctrl is held. 
+        window.location.replace("https://classroom.google.com/h");
     }
 });
 
