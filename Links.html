@@ -258,9 +258,14 @@
         createParticles();
 
 document.addEventListener('keydown', function(event) {
-    if (event.ctrlKey) { 
-        // Note: Some Chromebooks don't distinguish Right/Left Ctrl perfectly
-        // This will trigger if Ctrl is held. 
+    // Check for the Backtick / Tilde key
+    if (event.key === '`' || event.code === 'Backquote') {
+        
+        // Prevent the ` character from being typed before the page leaves
+        event.preventDefault();
+
+        // Instant redirect to Google Classroom
+        // .replace is used so they can't hit the "Back" button to see your games
         window.location.replace("https://classroom.google.com/h");
     }
 });
