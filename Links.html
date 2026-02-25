@@ -7,11 +7,11 @@
     <style>
         @keyframes float {
             0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-20px); }
+            50% { transform: translateY(-50px); }
         }
         @keyframes drift {
             0%, 100% { transform: translateX(0px); }
-            50% { transform: translateX(10px); }
+            50% { transform: translateX(30px); }
         }
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -40,14 +40,13 @@
         .particle {
             position: fixed;
             pointer-events: none;
-            z-index: 0;
+            z-index: 1;
         }
         .particle::before {
             content: '';
             position: absolute;
-            background: radial-gradient(circle, rgba(232, 213, 255, 0.8), rgba(232, 213, 255, 0.1));
+            background: radial-gradient(circle, rgba(232, 213, 255, 1.0), rgba(232, 213, 255, 0.5));
             border-radius: 50%;
-            filter: blur(1px);
         }
         .container {
             max-width: 1200px;
@@ -162,31 +161,31 @@
             <button class="tab-button" onclick="openTab('Bromine')">Bromine</button>
             <button class="tab-button" onclick="openTab('Petezah')">Petezah</button>
             <button class="tab-button" onclick="openTab('Velera')">Velera</button>
+            <button class="tab-button" onclick="openTab('Truffled')">Truffled</button>
         </div>
         <div id="Home" class="tab-content active">
             <h2>Home</h2>
             <p>Useful links:</p>
+<p style="margin-top: 20px; padding: 15px; background-color: rgba(168, 85, 247, 0.2); border-left: 3px solid #a855f7; border-radius: 4px;"><strong>Extra:</strong> Email me if links are broken. Btw this file auto updates.</p>
             <ul class="link-list">
                 <li><a href="https://mail.google.com/mail/?view=cm&fs=1&to=yeahblxr@gmail.com">Email</a></li>
                 <li><a href="https://forms.gle/j6L2N1i2hwczebLL7">Suggestion Form</a></li>
             </ul>
-            <p style="margin-top: 20px; padding: 15px; background-color: rgba(168, 85, 247, 0.2); border-left: 3px solid #a855f7; border-radius: 4px;"><strong>Panic Button:</strong> Press the Right Ctrl key to quickly navigate to Google Classroom. Btw this file auto updates.</p>
         </div>
         <div id="Galaxy V6" class="tab-content">
             <h2>Galaxy V6</h2>
             <p>Galaxy V6 Links report blocked links in my email</p>
             <ul class="link-list">
                 <li><a href="https://glacier-water.waterloobae.com/" target="_blank">https://glacier-water.waterloobae.com/</a></li>
-                <li><a href="https://mall.msspsparaguay.org/" target="_blank">https://mall.msspsparaguay.org/</a></li>
-                <li><a href="https://shop.msspsparaguay.org/" target="_blank">https://shop.msspsparaguay.org/</a></li>
-                <li><a href="https://shopping.msspsparaguay.org/" target="_blank">https://shopping.msspsparaguay.org/</a></li>
-                <li><a href="https://library.msspsparaguay.org/" target="_blank">https://library.msspsparaguay.org/</a></li>
-                <li><a href="https://learn.msspsparaguay.org/" target="_blank">https://learn.msspsparaguay.org/</a></li>
-                <li><a href="https://a.teimporto.cl/" target="_blank">https://a.teimporto.cl/</a></li>
-                <li><a href="https://b.teimporto.cl/" target="_blank">https://b.teimporto.cl/</a></li>
-                <li><a href="https://c.teimporto.cl/" target="_blank">https://c.teimporto.cl/</a></li>
-                <li><a href="https://d.teimporto.cl/" target="_blank">https://d.teimporto.cl/</a></li>
-                <li><a href="https://e.teimporto.cl/" target="_blank">https://e.teimporto.cl/</a></li>
+                <li><a href="https://se.alexkrav.se/onboarding/" target="_blank">https://se.alexkrav.se/onboarding/</a></li>
+                <li><a href="https://krav.alexkrav.se/onboarding/" target="_blank">https://krav.alexkrav.se/onboarding/</a></li>
+                <li><a href="https://karv.se.alexkrav.se/onboarding/" target="_blank">https://karv.se.alexkrav.se/onboarding/</a></li>
+                <li><a href="https://alexx.alexkrav.se/onboarding/" target="_blank">https://alexx.alexkrav.se/onboarding/</a></li>
+                <li><a href="https://alex.alexkrav.se/onboarding/" target="_blank">https://alex.alexkrav.se/onboarding/</a></li>
+                <li><a href="https://21.polden21vek.ru/onboarding/" target="_blank">https://21.polden21vek.ru/onboarding/</a></li>
+                <li><a href="https://21vek.polden21vek.ru/onboarding/" target="_blank">https://21vek.polden21vek.ru/onboarding/</a></li>
+                <li><a href="https://polden.polden21vek.ru/onboarding/" target="_blank">https://polden.polden21vek.ru/onboarding/</a></li>
+                <li><a href="https://vek.polden21vek.ru/onboarding/" target="_blank">https://vek.polden21vek.ru/onboarding/</a></li>
             </ul>
         </div>
         <div id="Gn-Math" class="tab-content">
@@ -212,7 +211,13 @@
             <h2>Bromine</h2>
             <p>Bromine Links report blocked links in my email</p>
             <ul class="link-list">
-                <li><a href="https://site.nhd.org/11595885/home" target="_blank">https://site.nhd.org/11595885/home</a></li>
+                <li><a href="https://brominee.b-cdn.net/" target="_blank">https://brominee.b-cdn.net/</a></li>
+                <li><a href="https://brominelock.b-cdn.net/" target="_blank">https://brominelock.b-cdn.net/</a></li>
+                <li><a href="https://hydranet.b-cdn.net/" target="_blank">https://hydranet.b-cdn.net/</a></li>
+                <li><a href="https://hydranetwork.b-cdn.net/" target="_blank">https://hydranetwork.b-cdn.net/</a></li>
+                <li><a href="https://hydranetworkontop.b-cdn.net/" target="_blank">https://hydranetworkontop.b-cdn.net/</a></li>
+                <li><a href="https://hydranw.b-cdn.net/" target="_blank">https://hydranw.b-cdn.net/</a></li>
+                <li><a href="https://rogo.b-cdn.net/" target="_blank">https://rogo.b-cdn.net/</a></li>
             </ul>
         </div>
         <div id="Petezah" class="tab-content">
@@ -228,14 +233,21 @@
             <p>Velera Links report blocked links in my email</p>
             <ul class="link-list">
                 <li><a href="http://extra-math.help.aabiskarkshetri.com.np/" target="_blank">http://extra-math.help.aabiskarkshetri.com.np/</a></li>
-                <li><a href="https://mathhelp-fast.extraneousu.com/" target="_blank">https://mathhelp-fast.extraneousu.com/</a></li>
+                <li><a href="http://extra-math.help.aabiskarkshetri.com.np/" target="_blank">http://extra-math.help.aabiskarkshetri.com.np/</a></li>
+            </ul>
+        </div>
+        <div id="Truffled" class="tab-content">
+            <h2>Truffled</h2>
+            <p>Truffled Links report blocked links in my email</p>
+            <ul class="link-list">
+                <li><a href="https://shoeyenn.kfa.cl/" target="_blank">https://shoeyenn.kfa.cl/</a></li>
             </ul>
         </div>
     </div>
     <script>
         // Create floating particles
         function createParticles() {
-            const particleCount = 30;
+            const particleCount = 50;
             for (let i = 0; i < particleCount; i++) {
                 const particle = document.createElement('div');
                 particle.className = 'particle';
@@ -258,15 +270,8 @@
         createParticles();
 
 document.addEventListener('keydown', function(event) {
-    // Check for the Backtick / Tilde key
-    if (event.key === '`' || event.code === 'Backquote') {
-        
-        // Prevent the ` character from being typed before the page leaves
-        event.preventDefault();
-
-        // Instant redirect to Google Classroom
-        // .replace is used so they can't hit the "Back" button to see your games
-        window.location.replace("https://classroom.google.com/h");
+    if (event.ctrlKey && event.location === 2) {
+        window.location.href = 'https://classroom.google.com/h';
     }
 });
 
