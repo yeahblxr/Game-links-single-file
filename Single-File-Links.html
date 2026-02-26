@@ -4,52 +4,97 @@
     <meta charset="UTF-8">
     <title>Game Stash</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        /* basic page look while waiting for fetched content */
+        body {
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #2e004f 0%, #8d09b5 100%);
+            color: #f3e8ff;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        #content {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 20px;
+        }
+        .loader {
+            border: 8px solid rgba(255,255,255,0.2);
+            border-top: 8px solid #a855f7;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            animation: spin 1s linear infinite;
+        }
+        .error {
+            color: #ff6b6b;
+            font-weight: bold;
+            padding: 20px;
+            background: rgba(0,0,0,0.5);
+            border-radius: 8px;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
 </head>
 <body>
 
-<div id="content"></div>
+<div id="content"><div class="loader"></div></div>
 
 <script>
-fetch("https://cdn.jsdelivr.net/gh/yeahblxr/Game-links-single-file@latest/Links.html?t=" + Date.now())
-    .then(response => {
-        if (!response.ok) throw new Error("Failed to load file");
-        return response.text();
-    })
-    .then(data => {
-        const parser = new DOMParser();
-        const doc = parser.parseFromString(data, 'text/html');
-        
-        // Extract styles from head
-        const styles = doc.querySelectorAll('style');
-        styles.forEach(style => document.head.appendChild(style.cloneNode(true)));
-        
-        // Extract container content from body
-        const container = doc.querySelector('.container');
-        if (container) {
-            document.getElementById("content").innerHTML = container.innerHTML;
-            
-            // Re-run the openTab function to make tabs work
-            window.openTab = function(tabName) {
-                var tabcontent = document.getElementsByClassName("tab-content");
-                for (var i = 0; i < tabcontent.length; i++) {
-                    tabcontent[i].style.display = "none";
-                    tabcontent[i].classList.remove("active");
-                }
-                var tabbuttons = document.getElementsByClassName("tab-button");
-                for (var i = 0; i < tabbuttons.length; i++) {
-                    tabbuttons[i].classList.remove("active");
-                }
-                document.getElementById(tabName).style.display = "block";
-                document.getElementById(tabName).classList.add("active");
-                event.currentTarget.classList.add("active");
+(function(){
+    const url = "https://cdn.jsdelivr.net/gh/yeahblxr/Game-links-single-file@latest/Links.html?t=" + Date.now();
+    const content = document.getElementById("content");
+
+    // switch spinner to iframe when loaded
+    const iframe = document.createElement('iframe');
+    iframe.style.border = 'none';
+    iframe.style.width = '100%';
+    iframe.style.height = '100vh';
+    iframe.style.display = 'none';
+
+    // append early so loader stays centered
+    content.appendChild(iframe);
+
+    fetch(url)
+        .then(res => {
+            if (!res.ok) throw new Error('Network response was not ok: ' + res.status);
+            return res.text();
+        })
+        .then(html => {
+            // convert to blob with correct MIME so iframe renders it
+            const blob = new Blob([html], {type: 'text/html'});
+            const blobUrl = URL.createObjectURL(blob);
+            iframe.src = blobUrl;
+            iframe.onload = () => {
+                const loader = content.querySelector('.loader');
+                if (loader) loader.remove();
+                iframe.style.display = 'block';
+                const err = content.querySelector('.error');
+                if (err) err.remove();
             };
+        })
+        .catch(err => {
+            const loader = content.querySelector('.loader');
+            if (loader) loader.remove();
+            content.innerHTML = `<div class="error">Failed to load content: ${err.message}</div>`;
+            console.error(err);
+        });
+
+    // timeout fallback
+    setTimeout(() => {
+        if (content.querySelector('.loader')) {
+            content.innerHTML = `<div class="error">Loading taking too long; please check your connection.</div>`;
+            console.warn('Load timeout exceeded');
         }
-    })
-    .catch(error => {
-        document.getElementById("content").textContent = "Error loading content: " + error.message;
-        console.error(error);
-    });
+    }, 15000);
+})();
 </script>
 
 </body>
-</html>
+</html></html>
